@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/kart_idle.wav-2ddf3f7893544f1c78c60e7fbce66c7e.sample"
+
+[deps]
+
+source_file="res://sounds/kart/kart_idle.wav"
+dest_files=[ "res://.import/kart_idle.wav-2ddf3f7893544f1c78c60e7fbce66c7e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=1

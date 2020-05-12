@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+var dict:Dictionary = {}
+
+func _process(delta):
+	$lb_var.text = str( dict )
+"
+
+[node name="Debugger" type="Control"]
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lb_var" type="Label" parent="."]
+margin_right = 138.0
+margin_bottom = 343.0
+rect_scale = Vector2( 1.28833, 1.40554 )
+text = "var:"
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

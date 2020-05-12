@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://texture/road.jpeg" type="Texture" id=1]
+[ext_resource path="res://gameplay/obj_kart.scn" type="PackedScene" id=2]
+
+
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Curve3D" id=2]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 9.18286, -3.47317, 37.0104, 0, 0, 0, 0, 0, 0, 9.55759, 5.02341, 81.0842, 0, 0, 0, 0, 0, 0, 34.0846, 24.3056, 122.167, 0, 0, 0, 0, 0, 0, 38.2457, 43.3675, 146.659, 0, 0, 0, 0, 0, 0, 115.344, 35.2195, 117.887, 0, 0, 0, 0, 0, 0, 168.922, 12.5278, 90.2745, 0, 0, 0, 0, 0, 0, 225.832, -5.5972, 67.0528, 0, 0, 0, 0, 0, 0, 277.491, -3.47317, 7.93677, 0, 0, 0, 0, 0, 0, 756.564, -3.47317, -8.30641, 0, 0, 0, 0, 0, 0, 929.165, 187.862, 225.21, 0, 0, 0, 0, 0, 0, 1274.9, -12.6602, 1481.3, 0, 0, 0, 0, 0, 0, 2586.3, -16.4595, 2025.59, 0, 0, 0, 0, 0, 0, 3188.27, -11.1558, 1265.98, 0, 0, 0, 0, 0, 0, 2822.79, -6.75296, 635.354, 0, 0, 0, 0, 0, 0, 2192.15, -5.00198, 384.538, 0, 0, 0, 0, 0, 0, 1640.34, -4.40139, 298.545, 0, 0, 0, 0, 0, 0, 1101.09, -137.276, 329.902, 0, 0, 0, 0, 0, 0, 285.907, -7.85306, 793.01, 0, 0, 0, 0, 0, 0, -796.21, -12.9063, 1516.79, 0, 0, 0, 0, 0, 0, -1154.53, -16.3579, 2011.26 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Camera
+
+export var offset:Vector3
+export var look_offset:Vector3
+export var lookat_path:NodePath
+export var pos_path:NodePath
+var look
+var pos
+func _ready():
+	look = get_node(lookat_path)
+	pos = get_node(pos_path)
+
+func _process(delta):
+	look_at(look.get_global_transform().origin + look_offset,Vector3.UP)
+	translation = lerp(translation,pos.get_global_transform().origin + offset,.1)
+"
+
+[node name="Spatial" type="Spatial"]
+
+[node name="KinematicBody" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.682, -0.820735, 14.1962 )
+
+[node name="Level" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3307, -5.02341, -23.9434 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Level"]
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -12.5914, 0.676817, -12.4951, 2.31368, 96, 3, 96, 1 )
+mode = 2
+path_node = NodePath("../Path")
+path_interval = 76.221
+path_rotation = 2
+path_local = true
+path_continuous_u = false
+path_joined = false
+smooth_faces = true
+material = SubResource( 1 )
+
+[node name="Path" type="Path" parent="Level"]
+curve = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+far = 1000.0
+script = SubResource( 3 )
+lookat_path = NodePath("../KinematicBody/Eye")
+pos_path = NodePath("../KinematicBody/Cam")
+
+[editable path="KinematicBody"]

@@ -1,0 +1,2 @@
+extends HBoxContainer
+class_name DebuggContaine

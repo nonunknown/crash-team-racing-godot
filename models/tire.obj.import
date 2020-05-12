@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tire.obj-2445804d4a954ebf068fa5187c0ad0b5.mesh"
+
+[deps]
+
+files=[ "res://.import/tire.obj-2445804d4a954ebf068fa5187c0ad0b5.mesh" ]
+
+source_file="res://models/tire.obj"
+dest_files=[ "res://.import/tire.obj-2445804d4a954ebf068fa5187c0ad0b5.mesh", "res://.import/tire.obj-2445804d4a954ebf068fa5187c0ad0b5.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
