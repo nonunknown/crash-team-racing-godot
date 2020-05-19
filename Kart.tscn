@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/KartController.gd" type="Script" id=1]
+[ext_resource path="res://models/kart.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://models/tire.obj" type="ArrayMesh" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 1.45819
+height = 1.94994
+
+[node name="Kart" type="KinematicBody"]
+script = ExtResource( 1 )
+gravity = -1.0
+
+[node name="kart" type="MeshInstance" parent="."]
+transform = Transform( 0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+material/9 = null
+material/10 = null
+material/11 = null
+material/12 = null
+
+[node name="tire" type="MeshInstance" parent="."]
+transform = Transform( 0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -1.79305, 0.636402, -0.0349671 )
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+
+[node name="tire2" type="MeshInstance" parent="."]
+transform = Transform( 0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 1.80034, 0.636402, -0.0349671 )
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+
+[node name="tire3" type="MeshInstance" parent="."]
+transform = Transform( 0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -1.79305, 0.636402, -2.79755 )
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+
+[node name="tire4" type="MeshInstance" parent="."]
+transform = Transform( 0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 1.80034, 0.636402, -2.79755 )
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52635, -1.32033 )
+shape = SubResource( 1 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0279767, -1.26389 )
+enabled = true

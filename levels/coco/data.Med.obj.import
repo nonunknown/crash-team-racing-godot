@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/data.Med.obj-6de93668069aa7d4def4107cfe8c0343.mesh"
+
+[deps]
+
+files=[ "res://.import/data.Med.obj-6de93668069aa7d4def4107cfe8c0343.mesh" ]
+
+source_file="res://levels/coco/data.Med.obj"
+dest_files=[ "res://.import/data.Med.obj-6de93668069aa7d4def4107cfe8c0343.mesh", "res://.import/data.Med.obj-6de93668069aa7d4def4107cfe8c0343.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

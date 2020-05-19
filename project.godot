@@ -9,37 +9,77 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "HBoxContainer",
-"class": "DebuggContaine",
-"language": "GDScript",
-"path": "res://Scripts/DebuggerContainer.gd"
-}, {
 "base": "KinematicBody",
-"class": "KartControl",
+"class": "KartController",
 "language": "GDScript",
-"path": "res://Scripts/KartControl.gd"
+"path": "res://Scripts/gameplay/KartController.gd"
 }, {
-"base": "KartControl",
+"base": "KartController",
 "class": "KartState",
 "language": "GDScript",
-"path": "res://Scripts/KartState.gd"
+"path": "res://gameplay/KartState.gd"
 }, {
 "base": "Reference",
-"class": "MachineManager",
+"class": "StateMachine",
 "language": "GDScript",
-"path": "res://Scripts/FSM.gd"
+"path": "res://Scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
-"DebuggContaine": "",
-"KartControl": "",
+"KartController": "",
 "KartState": "",
-"MachineManager": ""
+"StateMachine": ""
 }
 
 [application]
 
 config/name="cttr"
 config/icon="res://icon.png"
+
+[autoload]
+
+ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
+
+[display]
+
+window/size/width=720
+window/size/height=480
+
+[editor_plugins]
+
+enabled=PoolStringArray( "screen_debugger" )
+
+[input]
+
+cmd_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_trigger_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":74,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_trigger_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [rendering]
 
