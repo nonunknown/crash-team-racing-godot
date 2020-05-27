@@ -10,10 +10,10 @@ This is only possible with the help of CTR-Tools Guys which are decompiling the 
 and have a lot of technical details about the game.
 
 
-## ScreenShots
+## Screenshots
 
-![sidecomparision](https://i.imgur.com/PMa81fm.mp4)
-![slowmotion](https://imgur.com/7Oce0Ov.mp4)
+https://i.imgur.com/PMa81fm.mp4
+https://imgur.com/7Oce0Ov.mp4
 
 ## Controllers
 * WASD - Move
