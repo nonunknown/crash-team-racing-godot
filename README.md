@@ -1,3 +1,5 @@
+![banner](https://i.imgur.com/FuMpPBk.png)
+
 # Crash Team Racing - Godot
 
 ## Description
