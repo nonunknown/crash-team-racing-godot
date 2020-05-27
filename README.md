@@ -10,11 +10,12 @@ This is only possible with the help of CTR-Tools Guys which are decompiling the 
 and have a lot of technical details about the game.
 
 
-##ScreenShots
+## ScreenShots
+
 ![sidecomparision](https://i.imgur.com/PMa81fm.mp4)
 ![slowmotion](https://imgur.com/7Oce0Ov.mp4)
 
-##Controllers
+## Controllers
 * WASD - Move
 * U - Camera close/far
 * Hold I - Camera front
