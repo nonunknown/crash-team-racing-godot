@@ -20,9 +20,13 @@ https://imgur.com/7Oce0Ov.mp4
 * U - Camera close/far
 * Hold I - Camera front
 * Hold Space - slow motion
+* K - Start a video in the top-left corner (used to compare with original game) videos folder is not included, if you want to help I can include then in future updates.
 
-**Only playable scene: Ice.tscn**
-
+**How to Test**
+* Open Godot 3.2.2 beta 3
+* open the project
+* start scene **Ice.tscn**
+* Press F6
 
 ## CHANGELOG
 
