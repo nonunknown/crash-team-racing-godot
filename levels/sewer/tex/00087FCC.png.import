@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/00087FCC.png-13c1a6c81984455cd4d89749a2b29cdb.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/sewer/tex/00087FCC.png"
+dest_files=[ "res://.import/00087FCC.png-13c1a6c81984455cd4d89749a2b29cdb.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

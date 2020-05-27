@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sewer.Med.obj-db159b0fdc41d048c2734734437a1112.mesh"
+
+[deps]
+
+files=[ "res://.import/sewer.Med.obj-db159b0fdc41d048c2734734437a1112.mesh" ]
+
+source_file="res://levels/sewer/sewer.Med.obj"
+dest_files=[ "res://.import/sewer.Med.obj-db159b0fdc41d048c2734734437a1112.mesh", "res://.import/sewer.Med.obj-db159b0fdc41d048c2734734437a1112.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
