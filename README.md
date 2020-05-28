@@ -1,3 +1,5 @@
+![banner](https://i.imgur.com/FuMpPBk.png)
+
 # Crash Team Racing - Godot
 
 ## Description
@@ -10,18 +12,23 @@ This is only possible with the help of CTR-Tools Guys which are decompiling the 
 and have a lot of technical details about the game.
 
 
-##ScreenShots
-![sidecomparision](https://i.imgur.com/PMa81fm.mp4)
-![slowmotion](https://imgur.com/7Oce0Ov.mp4)
+## Screenshots
 
-##Controllers
+https://i.imgur.com/PMa81fm.mp4
+https://imgur.com/7Oce0Ov.mp4
+
+## Controllers
 * WASD - Move
 * U - Camera close/far
 * Hold I - Camera front
 * Hold Space - slow motion
+* K - Start a video in the top-left corner (used to compare with original game) videos folder is not included, if you want to help I can include then in future updates.
 
-**Only playable scene: Ice.tscn**
-
+**How to Test**
+* Open Godot 3.2.2 beta 3
+* open the project
+* start scene **Ice.tscn**
+* Press F6
 
 ## CHANGELOG
 
