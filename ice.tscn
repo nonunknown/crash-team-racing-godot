@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/sewer/lev_sewer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Kart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/gameplay/Camera.gd" type="Script" id=3]
 [ext_resource path="res://videos/jumpramp.webm" type="VideoStream" id=4]
+[ext_resource path="res://gameplay/HUD_Speedometer.tscn" type="PackedScene" id=5]
+
+[sub_resource type="SphereShape" id=5]
+radius = 1.09041
 
 [sub_resource type="BoxShape" id=1]
 margin = 0.001
@@ -100,6 +104,12 @@ size = 17.14
 
 [node name="Kart" parent="." instance=ExtResource( 2 )]
 transform = Transform( -3.23167e-08, 0, 0.739319, 0, 1, 0, -0.96118, 0, -4.20145e-08, -6.44704, 0.0431426, 0.570926 )
+
+[node name="RayCast" parent="Kart" index="0"]
+transform = Transform( 1, 0, 4.26326e-14, 0, 1, 0, 3.55271e-15, 0, 1, 1.78814e-07, 0.0972519, -1.23734 )
+
+[node name="CollisionShape" parent="Kart" index="1"]
+shape = SubResource( 5 )
 
 [node name="lev_sewer" type="Spatial" parent="."]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
@@ -247,6 +257,11 @@ buffering_msec = 1000
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HUD_Speedometer" parent="." instance=ExtResource( 5 )]
+np_kart = NodePath("../Kart")
 [connection signal="body_entered" from="MeshInstance/Area" to="MeshInstance/Area" method="_on_Area_body_entered"]
+
+[editable path="Kart"]
 
 [editable path="lev_sewer/lev_sewer"]

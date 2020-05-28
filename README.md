@@ -25,6 +25,10 @@ and have a lot of technical details about the game.
 
 ## CHANGELOG
 
+**0.2.0**
+* Added Speedometer
+* 
+
 **0.1.0**
 * Added a new kart model (better one with less polygons)
 * Tire handling

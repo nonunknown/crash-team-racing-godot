@@ -40,7 +40,7 @@ func _process(delta):
 	ScreenDebugger.dict["Camera_is_close"] = close
 	if type == "attached":
 		var pos = current_pos.global_transform.origin
-		global_transform.origin = lerp(global_transform.origin,pos,.85)
+		global_transform.origin = lerp(global_transform.origin,pos,1)
 		look_at(look.global_transform.origin + offset,Vector3.UP)
 	else:
 		global_transform.origin = current_pos.global_transform.origin + offset
