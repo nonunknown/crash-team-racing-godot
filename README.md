@@ -27,7 +27,7 @@ https://imgur.com/7Oce0Ov.mp4
 **How to Test**
 * Open Godot 3.2.2 beta 3
 * open the project
-* start scene **Ice.tscn**
+* start scene **gameplay/lev_sewer.tscn**
 * Press F6
 
 ## CHANGELOG

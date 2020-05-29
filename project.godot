@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="cttr"
-run/main_scene="res://ice.tscn"
+run/main_scene="res://gameplay/lev_sewer.tscn"
 config/icon="res://icon.png"
 
 [autoload]
