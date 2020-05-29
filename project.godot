@@ -12,27 +12,27 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "KartController",
 "language": "GDScript",
-"path": "res://Scripts/gameplay/KartController.gd"
-}, {
-"base": "KartController",
-"class": "KartState",
-"language": "GDScript",
-"path": "res://gameplay/KartState.gd"
+"path": "res://scripts/gameplay/KartController.gd"
 }, {
 "base": "Reference",
 "class": "SpeedData",
 "language": "GDScript",
-"path": "res://SpeedData.gd"
+"path": "res://scripts/SpeedData.gd"
+}, {
+"base": "Control",
+"class": "Speedometer",
+"language": "GDScript",
+"path": "res://scripts/HUD/Speedometer.gd"
 }, {
 "base": "Reference",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Scripts/StateMachine.gd"
+"path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "KartController": "",
-"KartState": "",
 "SpeedData": "",
+"Speedometer": "",
 "StateMachine": ""
 }
 

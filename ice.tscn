@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/sewer/lev_sewer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Kart.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/gameplay/Camera.gd" type="Script" id=3]
+[ext_resource path="res://scripts/gameplay/Camera.gd" type="Script" id=3]
 [ext_resource path="res://videos/jumpramp.webm" type="VideoStream" id=4]
 [ext_resource path="res://gameplay/HUD_Speedometer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://RayCast.gd" type="Script" id=6]
 
 [sub_resource type="SphereShape" id=1]
 radius = 1.09041
@@ -261,12 +260,6 @@ __meta__ = {
 
 [node name="HUD_Speedometer" parent="." instance=ExtResource( 5 )]
 np_kart = NodePath("../Kart")
-
-[node name="RayCast" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131089, -1.69309, -85.4845 )
-enabled = true
-cast_to = Vector3( 0, -2, 0 )
-script = ExtResource( 6 )
 [connection signal="body_entered" from="MeshInstance/Area" to="MeshInstance/Area" method="_on_Area_body_entered"]
 
 [editable path="Kart"]

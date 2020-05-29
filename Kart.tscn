@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/gameplay/KartController.gd" type="Script" id=1]
+[ext_resource path="res://scripts/gameplay/KartController.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://models/kart/kart.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/gameplay/KartAnimation.gd" type="Script" id=4]
+[ext_resource path="res://scripts/gameplay/KartAnimation.gd" type="Script" id=4]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.588331, 0.474434, 1.32538 )
