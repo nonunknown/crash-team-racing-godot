@@ -64,9 +64,9 @@ func _physics_process(delta):
 	hvel.y = 0
 	
 	var normal = $RayCast.get_collision_normal()
-	var xform = align_with_y($mesh.global_transform, normal)
-	ScreenDebugger.dict["normal"] = normal
+#	ScreenDebugger.dict["normal"] = normal
 	if is_on_floor(): # only align the kart if is on ground
+		var xform = align_with_y($mesh.global_transform, normal)
 		$mesh.global_transform = $mesh.global_transform.interpolate_with(xform,.5)
 #		velocity.y = velocity.y + 1
 
@@ -76,7 +76,11 @@ func _physics_process(delta):
 	
 	#target speed
 #	global_transform = xform
-	var target = global_transform.basis.z * input_forward * MAX_SPEED
+	
+	var slopeDir = Vector3.UP.cross(Vector3.UP.cross(normal))
+	var slope = global_transform.basis.z.dot(slopeDir)
+	ScreenDebugger.dict["slope"] = slope
+	var target = global_transform.basis.z * input_forward * ( MAX_SPEED + ( slope * -10) )
 	ScreenDebugger.dict["target"] = target
 	#Acelleration or Deaceleration
 	var impulse_type = DEACC
@@ -100,7 +104,7 @@ func _physics_process(delta):
 
 	velocity = move_and_slide(velocity,Vector3.UP,true,4,PI/3)
 	
-	speed = velocity.length()
+	speed = Vector2(velocity.x,velocity.z).length()
 	ScreenDebugger.dict["Velocity"] = velocity
 	ScreenDebugger.dict["Turning"] = turning
 	ScreenDebugger.dict["Speed"] = speed

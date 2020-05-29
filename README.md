@@ -32,9 +32,15 @@ https://imgur.com/7Oce0Ov.mp4
 
 ## CHANGELOG
 
+**0.2.1**
+* Corrected uphill speed lose
+* Added SpeedData
+- SpeedData contains the official values used in CTR 1999
+- MT are powerslide / SF - Saffi fire / USF - Ultra Saffi fire
+- Thanks to **baguete** for making the research  
+
 **0.2.0**
 * Added Speedometer
-* 
 
 **0.1.0**
 * Added a new kart model (better one with less polygons)

@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://gameplay/KartState.gd"
 }, {
 "base": "Reference",
+"class": "SpeedData",
+"language": "GDScript",
+"path": "res://SpeedData.gd"
+}, {
+"base": "Reference",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine.gd"
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "KartController": "",
 "KartState": "",
+"SpeedData": "",
 "StateMachine": ""
 }
 
