@@ -35,8 +35,11 @@ https://imgur.com/7Oce0Ov.mp4
 ## CHANGELOG
 **0.3.0**
 * Added Jump
-* Added PowerSliding
+* Added PowerSliding (not even close to original game)
 * Speedometer now shows powersliding meter
+* Added proper collision to sewer speedway
+* Added Tiremarks
+
 
 **0.2.1**
 * Corrected uphill speed lose
