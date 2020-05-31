@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://models/kart/Material_001.material" type="Material" id=1]
 [ext_resource path="res://particles/smoke.jpeg" type="Texture" id=2]
+[ext_resource path="res://gameplay/obj_skid.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "lug_front_low_Material_0"
@@ -111,25 +112,54 @@ material = SubResource( 9 )
 
 [node name="mesh" type="Spatial"]
 
-[node name="tire_fl" type="MeshInstance" parent="."]
-transform = Transform( 1.19209e-05, 100, -1.19209e-05, -100, 1.19209e-05, 0, 0, 1.19209e-05, 100, -48.411, 20.2748, -53.3141 )
+[node name="tires" type="Spatial" parent="."]
+
+[node name="tire_fl" type="MeshInstance" parent="tires"]
+transform = Transform( 1.19209e-05, 100, -1.19209e-05, -100, 1.19209e-05, 0, 0, 1.19209e-05, 100, -36.0508, 20.481, -52.8196 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="tire_fr" type="MeshInstance" parent="."]
-transform = Transform( -1.19209e-05, -100, 3.17865e-06, -100, 1.19209e-05, 0, 1.04216e-12, -3.17865e-06, -100, 46.1866, 20.2748, -53.3141 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="tire_bl" type="MeshInstance" parent="."]
+[node name="tire_bl" type="MeshInstance" parent="tires"]
 transform = Transform( 1.19209e-05, 100, -1.19209e-05, -100, 1.19209e-05, 0, 0, 1.19209e-05, 100, -48.411, 20.2748, 31.7298 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="tire_br" type="MeshInstance" parent="."]
+[node name="tire_br" type="MeshInstance" parent="tires"]
 transform = Transform( -1.19209e-05, -100, 3.17865e-06, -100, 1.19209e-05, 0, 1.04216e-12, -3.17865e-06, -100, 46.1866, 20.2748, 31.7298 )
 mesh = SubResource( 1 )
 material/0 = null
+
+[node name="tire_fr" type="MeshInstance" parent="tires"]
+transform = Transform( -1.19209e-05, -100, 3.17865e-06, -100, 1.19209e-05, 0, 1.04216e-12, -3.17865e-06, -100, 46.1866, 20.2748, -53.3141 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="fl" type="Spatial" parent="tires"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.0508, 1.28146, -52.8196 )
+
+[node name="trail" parent="tires/fl" instance=ExtResource( 3 )]
+transform = Transform( 1.19209e-05, 100, -1.19209e-05, -100, 1.19209e-05, 0, 0, 1.19209e-05, 100, 0.554813, -18.2375, -0.156296 )
+
+[node name="fr" type="Spatial" parent="tires"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9625, 0, -52.9442 )
+
+[node name="trail" parent="tires/fr" instance=ExtResource( 3 )]
+transform = Transform( 1.19209e-05, 100, -1.19209e-05, -100, 1.19209e-05, 0, 0, 1.19209e-05, 100, 45.364, 1.25897, -53.3141 )
+
+[node name="bl" type="Spatial" parent="tires"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.617, 0, 30.8356 )
+
+[node name="trail" parent="tires/bl" instance=ExtResource( 3 )]
+transform = Transform( 1.19209e-05, 100, -1.19209e-05, -100, 1.19209e-05, 0, 0, 1.19209e-05, 100, -48.411, 1.25897, 31.4825 )
+
+[node name="br" type="Spatial" parent="tires"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.8716, 0, 34.3265 )
+
+[node name="trail" parent="tires/br" instance=ExtResource( 3 )]
+transform = Transform( 1.19209e-05, 100, -1.19209e-05, -100, 1.19209e-05, 0, 0, 1.19209e-05, 100, 45.364, 1.25897, 31.4825 )
+alignment = "Normal"
+
+[node name="Spark" type="Spatial" parent="."]
 
 [node name="kart" type="Spatial" parent="."]
 
@@ -169,7 +199,7 @@ visible = false
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="steering_wheel_low_Material_0" type="MeshInstance" parent="kart"]
+[node name="kart" type="MeshInstance" parent="kart"]
 transform = Transform( 100, 0, 0, 0, 48.9382, -87.2069, 0, 87.2069, 48.9382, -1.66283, 57.0636, -26.5744 )
 mesh = SubResource( 5 )
 material/0 = null
@@ -195,5 +225,3 @@ randomness = 1.0
 visibility_aabb = AABB( -26.311, -32.9768, -25.354, 52.6221, 65.9536, 50.708 )
 process_material = SubResource( 8 )
 draw_pass_1 = SubResource( 10 )
-
-[node name="Spark" type="Spatial" parent="Particles"]

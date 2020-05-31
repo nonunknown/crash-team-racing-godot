@@ -4,11 +4,27 @@
 [ext_resource path="res://sprites/speedometer/spr_speedometer_pointer.png" type="Texture" id=2]
 [ext_resource path="res://scripts/HUD/Speedometer.gd" type="Script" id=3]
 
-
 [node name="HUD_Speedometer" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Gas" type="ColorRect" parent="."]
+modulate = Color( 0.0078125, 1, 0.0233154, 1 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -122.0
+margin_top = -25.0
+margin_right = -30.0
+margin_bottom = -9.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 91.4106, 8.30945 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -22,6 +38,9 @@ margin_left = -131.0
 margin_top = -132.0
 texture = ExtResource( 1 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Pointer" type="TextureRect" parent="."]
 anchor_left = 1.0

@@ -1,7 +1,9 @@
 class_name SpeedData
 
+enum SKILL {BEGGINER,INTERMEDIATE,ADVANCED,ACC}
+
 #TODO convert to prototype floats
-const BASE_SPEED = 12950.0
+const BASE_SPEED:float =  18.4#12950.0
 
 #PERCENTAGES
 
@@ -51,3 +53,15 @@ const ADVANCED_MT_1:float = PERCENTAGE_MT_1 * ADVANCED_SPEED
 const ADVANCED_MT_2:float = PERCENTAGE_MT_2 * ADVANCED_SPEED
 const ADVANCED_MT_3:float = PERCENTAGE_MT_3 * ADVANCED_SPEED
 const ADVANCED_SF:float = PERCENTAGE_SF * ADVANCED_SPEED
+
+static func get_skill(skill:int) -> Dictionary:
+	match skill:
+		SKILL.BEGGINER:
+			return {
+				_min = BEGGINER_SPEED,
+				_mt1 = BEGGINER_MT_1,
+				_mt2 = BEGGINER_MT_2,
+				_mt3 = BEGGINER_MT_3,
+				_sf = BEGGINER_SF
+			}
+	return {}

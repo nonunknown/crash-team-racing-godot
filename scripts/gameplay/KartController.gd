@@ -5,7 +5,6 @@ var velocity:Vector3
 var acc:float = 0
 var turning:float = 0
 var speed:float
-const MAX_SPEED = 18.4#.7
 const ACC:float = 4.0#5.0
 const DEACC:float = .6
 const TURN:float = 1.13
@@ -19,6 +18,16 @@ var tire_rot:float = 0
 var input_turn = 0
 var input_forward = 0
 var last_speed
+var skill_data = SpeedData.get_skill(SpeedData.SKILL.BEGGINER)
+onready var base_speed:float = skill_data._min
+
+
+#sliding stuff
+var jumping:bool = false
+var sliding:bool = false
+var gas:float = 0
+var turbo:int = 0
+
 onready var video:VideoPlayer = get_node("../VideoPlayer")
 func _ready():
 	initial_position = translation
@@ -32,23 +41,43 @@ func align_with_y(xform, new_y):
 	return xform
 
 var slow= false
+var _delta
 func _process(delta):
+	_delta = delta
+	ScreenDebugger.dict["BaseSpeed"] = base_speed
+	ScreenDebugger.dict["Gas"] = gas
 	if Input.is_action_just_pressed("cmd_trigger_right"):
 		video.play()
+		
 	if Input.is_action_just_pressed("ui_accept"):
 		slow = !slow
 		if slow: Engine.time_scale = .2
 		else: Engine.time_scale = 1
 	
 func _physics_process(delta):
-	if Input.is_action_just_pressed("cmd_trigger_left"):
+	if Input.is_action_just_pressed("cmd_reset"):
 		velocity = Vector3.ZERO
 		rotation = initial_rot
 		translation = initial_position
 		$mesh.rotation = initial_mesh_rot
-	velocity.y += delta * -18.5
+	velocity.y += delta * -25#18.5
 	
-#	velocity = Vector3.ZERO
+	if Input.is_action_just_pressed("cmd_trigger_left") and is_on_floor():
+		velocity.y = 5
+		print("test")
+	
+	if not is_on_floor():
+		jumping = true
+	elif is_on_floor() and Input.is_action_pressed("cmd_trigger_left") and jumping:
+		sliding = true
+	else:
+		jumping = false
+		sliding = false
+	
+	
+	
+	ScreenDebugger.dict["jumping"] = jumping
+	ScreenDebugger.dict["sliding"] = sliding
 
 	input_turn = (-int(Input.is_action_pressed("cmd_right")) + int(Input.is_action_pressed("cmd_left")) )
 	if is_on_floor(): # input forward and back does not influence on air
@@ -67,7 +96,7 @@ func _physics_process(delta):
 #	ScreenDebugger.dict["normal"] = normal
 	if is_on_floor(): # only align the kart if is on ground
 		var xform = align_with_y($mesh.global_transform, normal)
-		$mesh.global_transform = $mesh.global_transform.interpolate_with(xform,.5)
+		$mesh.global_transform = $mesh.global_transform.interpolate_with(xform,.1)
 #		velocity.y = velocity.y + 1
 
 	#tire rotation variable used by KartAnimation
@@ -80,7 +109,8 @@ func _physics_process(delta):
 	var slopeDir = Vector3.UP.cross(Vector3.UP.cross(normal))
 	var slope = global_transform.basis.z.dot(slopeDir)
 	ScreenDebugger.dict["slope"] = slope
-	var target = global_transform.basis.z * input_forward * ( MAX_SPEED + ( slope * -10) )
+	var target = global_transform.basis.z * input_forward * ( base_speed + ( slope * -10) )
+	
 	ScreenDebugger.dict["target"] = target
 	#Acelleration or Deaceleration
 	var impulse_type = DEACC
@@ -94,6 +124,8 @@ func _physics_process(delta):
 	# this is a interpolation so make sure acceleration is never 0
 	# or else the kart will never stop
 	hvel = hvel.linear_interpolate(target, acceleration)
+	if Input.is_action_just_pressed("cmd_trigger_right"):
+		hvel *= 2
 	ScreenDebugger.dict["hvel"] = hvel
 	
 	# Assign hvel's values back to velocity, and then move.
@@ -108,3 +140,10 @@ func _physics_process(delta):
 	ScreenDebugger.dict["Velocity"] = velocity
 	ScreenDebugger.dict["Turning"] = turning
 	ScreenDebugger.dict["Speed"] = speed
+
+func do_gas():
+	while true:
+		if gas < 1:
+			gas += _delta
+		ScreenDebugger.dict["gas"] = gas
+		yield(get_tree(),"idle_frame")

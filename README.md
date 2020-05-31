@@ -22,7 +22,9 @@ https://imgur.com/7Oce0Ov.mp4
 * U - Camera close/far
 * Hold I - Camera front
 * Hold Space - slow motion
+* M - Reset Game
 * K - Start a video in the top-left corner (used to compare with original game) videos folder is not included, if you want to help I can include then in future updates.
+* J/K - equivalent to R1/L1
 
 **How to Test**
 * Open Godot 3.2.2 beta 3
@@ -31,6 +33,10 @@ https://imgur.com/7Oce0Ov.mp4
 * Press F6
 
 ## CHANGELOG
+**0.3.0**
+* Added Jump
+* Added PowerSliding
+* Speedometer now shows powersliding meter
 
 **0.2.1**
 * Corrected uphill speed lose
