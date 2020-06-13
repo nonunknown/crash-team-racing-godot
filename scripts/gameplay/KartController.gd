@@ -1,14 +1,16 @@
 extends KinematicBody
 class_name KartController
 
+const ACC:float = 4.0
+const DEACC:float = .6
+const TURN:float = 1.13
+const MAX_KART_SPEED:float = 410.0
+const BRAKE_SPEED:float = 6.6
+
 var velocity:Vector3
 var acc:float = 0
 var turning:float = 0
 var speed:float
-const ACC:float = 4.0#5.0
-const DEACC:float = .6
-const TURN:float = 1.13
-const MAX_KART_SPEED:float = 410.0
 var curve:float = 0
 var initial_position
 var initial_rot
@@ -18,15 +20,19 @@ var tire_rot:float = 0
 var input_turn = 0
 var input_forward = 0
 var last_speed
-var skill_data = SpeedData.get_skill(SpeedData.SKILL.BEGGINER)
+
+var skill_data = SpeedData.get_skill(SpeedData.SKILL.ADVANCED)
 onready var base_speed:float = skill_data._min
-
-
+onready var particles:KartParticles = $mesh/center/kart/Particles
+onready var animation:KartAnimation = $mesh
 #sliding stuff
 var jumping:bool = false
 var sliding:bool = false
 var gas:float = 0
 var turbo:int = 0
+var sliding_side:int = 0
+var reserves:int = 0
+var do_turbo:bool = false
 
 onready var video:VideoPlayer = get_node("../VideoPlayer")
 func _ready():
@@ -53,31 +59,44 @@ func _process(delta):
 		slow = !slow
 		if slow: Engine.time_scale = .2
 		else: Engine.time_scale = 1
-	
+
+func action_jump():
+	if Input.is_action_just_pressed("cmd_trigger_left") and is_on_floor():
+		velocity.y = 5
+
+func calculate_reserves():
+	if reserves == 0: 
+		return
+	if reserves - _delta <= 0: 
+		reserves = 0
+		return
+	reserves -= _delta
+
 func _physics_process(delta):
+	
+	calculate_reserves()
+	ScreenDebugger.dict["Reserves"] = reserves
+	
 	if Input.is_action_just_pressed("cmd_reset"):
 		velocity = Vector3.ZERO
 		rotation = initial_rot
 		translation = initial_position
 		$mesh.rotation = initial_mesh_rot
-	velocity.y += delta * -25#18.5
-	
-	if Input.is_action_just_pressed("cmd_trigger_left") and is_on_floor():
-		velocity.y = 5
-		print("test")
+	velocity.y +=delta * -25#18.5
+#	velocity += global_transform.basis.x
 	
 	if not is_on_floor():
 		jumping = true
-	elif is_on_floor() and Input.is_action_pressed("cmd_trigger_left") and jumping:
-		sliding = true
+#	elif is_on_floor() and Input.is_action_pressed("cmd_trigger_left") and jumping:
+#		sliding = true
 	else:
 		jumping = false
-		sliding = false
+#		sliding = false
 	
 	
-	
+	ScreenDebugger.dict["Slide turn"] = sliding_side
 	ScreenDebugger.dict["jumping"] = jumping
-	ScreenDebugger.dict["sliding"] = sliding
+#	ScreenDebugger.dict["sliding"] = sliding
 
 	input_turn = (-int(Input.is_action_pressed("cmd_right")) + int(Input.is_action_pressed("cmd_left")) )
 	if is_on_floor(): # input forward and back does not influence on air
@@ -124,8 +143,9 @@ func _physics_process(delta):
 	# this is a interpolation so make sure acceleration is never 0
 	# or else the kart will never stop
 	hvel = hvel.linear_interpolate(target, acceleration)
-	if Input.is_action_just_pressed("cmd_trigger_right"):
+	if Input.is_action_just_pressed("cmd_trigger_right") or do_turbo:
 		hvel *= 2
+		do_turbo = false
 	ScreenDebugger.dict["hvel"] = hvel
 	
 	# Assign hvel's values back to velocity, and then move.
@@ -133,8 +153,9 @@ func _physics_process(delta):
 	velocity.z = hvel.z
 	
 	
-
-	velocity = move_and_slide(velocity,Vector3.UP,true,4,PI/3)
+#	velocity += -$mesh.global_transform.basis.y 
+	velocity = move_and_slide_with_snap(velocity,normal,Vector3.UP,false)
+#	velocity = move_and_slide(velocity,Vector3.UP,true,4,PI/3)
 	
 	speed = Vector2(velocity.x,velocity.z).length()
 	ScreenDebugger.dict["Velocity"] = velocity

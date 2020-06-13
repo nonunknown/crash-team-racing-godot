@@ -2,16 +2,14 @@
 
 [ext_resource path="res://gameplay/HUD_Speedometer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/gameplay/Camera.gd" type="Script" id=2]
-[ext_resource path="res://videos/jumpramp.webm" type="VideoStream" id=3]
+[ext_resource path="res://videos/slide.webm" type="VideoStream" id=3]
 [ext_resource path="res://gameplay/obj_kart.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/sewer/src_sewer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gameplay/obj_TurboPad.tscn" type="PackedScene" id=6]
 
-[sub_resource type="SphereShape" id=1]
-radius = 1.09041
+[sub_resource type="QuadMesh" id=1]
 
-[sub_resource type="QuadMesh" id=2]
-
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Area
 
 
@@ -24,7 +22,7 @@ func _on_Area_body_entered(body):
 	pass # Replace with function body.
 "
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.46252, 1, 1 )
 
 [node name="Spatial" type="Spatial"]
@@ -76,11 +74,11 @@ size = 32.51
 far = 18.3
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.62921e-07, -0.157934, 0.98745, 0, 0.98745, 0.157934, -1, 2.57307e-08, -1.60876e-07, -2.111, 1.74, -6.784 )
+transform = Transform( -1.62921e-07, -0.157934, 0.98745, 0, 0.98745, 0.157934, -1, 2.57307e-08, -1.60876e-07, -2.311, 1.671, 0 )
 cull_mask = 3
 current = true
-fov = 83.1
-far = 64.6
+fov = 70.9
+far = 76.8
 script = ExtResource( 2 )
 type = "attached"
 np_target_pos_close = NodePath("../Kart/mesh/PosCamClose")
@@ -99,24 +97,21 @@ fov = 83.1
 size = 17.14
 
 [node name="Kart" parent="." instance=ExtResource( 4 )]
-transform = Transform( -3.23167e-08, 0, 0.739319, 0, 1, 0, -0.96118, 0, -4.20145e-08, -6.44704, 0.0431426, 0.570926 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44704, 0.0431426, 0.570926 )
 
 [node name="RayCast" parent="Kart" index="0"]
 transform = Transform( 1, 0, 4.26326e-14, 0, 1, 0, 3.55271e-15, 0, 1, 1.78814e-07, 0.0972519, -1.23734 )
 
-[node name="CollisionShape" parent="Kart" index="1"]
-shape = SubResource( 1 )
-
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -21.6938, 0.0371602, -5.98385 )
-mesh = SubResource( 2 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Area" type="Area" parent="MeshInstance"]
-script = SubResource( 3 )
+script = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/Area"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="VideoPlayer" type="VideoPlayer" parent="."]
 anchor_left = 1.0
@@ -133,6 +128,13 @@ __meta__ = {
 np_kart = NodePath("../Kart")
 
 [node name="sewer" parent="." instance=ExtResource( 5 )]
+
+[node name="Spatial" type="Spatial" parent="sewer"]
+
+[node name="TurboPad" parent="sewer/Spatial" instance=ExtResource( 6 )]
+transform = Transform( 0.92406, 0, -0.382248, 0, 1, 0, 0.382248, 0, 0.92406, -4896.62, 150.3, -7906.46 )
 [connection signal="body_entered" from="MeshInstance/Area" to="MeshInstance/Area" method="_on_Area_body_entered"]
 
 [editable path="Kart"]
+
+[editable path="sewer/Spatial/TurboPad"]

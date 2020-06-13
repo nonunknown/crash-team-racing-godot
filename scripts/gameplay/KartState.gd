@@ -1,7 +1,7 @@
 extends KartController
 class_name KartState
 
-enum STATE {IDLE,MOVING,SLIDING,JUMPING}
+enum STATE {IDLE,MOVING,SLIDING,JUMPING,BRAKING}
 var machine:StateMachine = StateMachine.new(self)
 
 func _ready():
@@ -29,11 +29,17 @@ func cd_idle() -> bool:
 		return true
 	return false
 
+func cd_brake() -> bool:
+	if is_grounded && Input.is_action_pressed("cmd_brake"): 
+		return true
+	return false
+
 func st_init_idle():
 	print("test")
 	pass
 
 func st_update_idle():
+	action_jump()
 	if cd_moving(): machine.change_state(STATE.MOVING)
 	pass
 
@@ -45,8 +51,11 @@ func st_init_moving():
 	pass
 
 func st_update_moving():
+	action_jump()
 	if cd_idle(): machine.change_state(STATE.IDLE)
-	if sliding: machine.change_state(STATE.SLIDING)
+	if cd_brake(): machine.change_state(STATE.BRAKING)
+	if  is_grounded and Input.is_action_pressed("cmd_trigger_left") and jumping: 
+		machine.change_state(STATE.SLIDING)
 	pass
 
 func st_exit_moving():
@@ -54,6 +63,11 @@ func st_exit_moving():
 
 
 func st_init_sliding():
+	animation.tire_mark_slide(true)
+	sliding = true
+	sliding_side = input_turn
+	if sliding_side == 0:
+		sliding_side = -1
 	pass
 
 var end_gas:bool = false
@@ -66,8 +80,11 @@ func st_update_sliding():
 	if gas > 1:
 		gas = 0
 		end_gas = true
+		return
 	elif gas > .5 and Input.is_action_just_pressed("cmd_trigger_right"):
+#		particles.set_smoke_black()
 		turbo += 1
+		reserves += 75 * gas
 		
 		if turbo == 1:
 			base_speed = skill_data._mt1
@@ -78,10 +95,11 @@ func st_update_sliding():
 			end_gas = true
 		
 		gas = 0
+		return
 	elif Input.is_action_just_pressed("cmd_trigger_right"):
 		end_gas = true
 		gas = 0
-		
+		return
 	
 	if Input.is_action_just_released("cmd_trigger_left"): machine.change_state(STATE.IDLE)
 	if cd_idle(): machine.change_state(STATE.IDLE)
@@ -91,10 +109,12 @@ func st_update_sliding():
 	pass
 
 func st_exit_sliding():
+	animation.tire_mark_slide(false)
 	gas = 0
 	turbo = 0
 	end_gas = false
 	base_speed = skill_data._min
+	sliding = false
 	pass
 
 
@@ -105,4 +125,20 @@ func st_update_jumping():
 	pass
 
 func st_exit_jumping():
+	pass
+
+var last_base
+func st_init_braking():
+	last_base = base_speed
+	base_speed = BRAKE_SPEED
+	animation.tire_mark_brake(true)
+	pass
+
+func st_update_braking():
+	
+	pass
+
+func st_exit_braking():
+	base_speed = last_base
+	animation.tire_mark_brake(false)
 	pass

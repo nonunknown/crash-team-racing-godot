@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/godot-next/VectorDisplay3D.gd" type="Script" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Spatial" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0202594 )
+script = ExtResource( 1 )
+variable_name = "test"
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.02622 )

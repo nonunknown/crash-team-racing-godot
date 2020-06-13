@@ -1,4 +1,5 @@
 extends Spatial
+class_name KartAnimation
 
 onready var tires = [
 	$center/kart/tires/tire_bl,
@@ -15,18 +16,19 @@ onready var marks = [
 ]
 
 onready var center:Spatial = $center
-onready var kart:KartController = get_parent()
-
+onready var kart = get_parent()
 var center_target_rot = 0
 var t = 1
+
+func tire_mark_slide(activate:bool):
+	for mark in marks:
+		mark.emit = activate
+
+func tire_mark_brake(activate:bool):
+	marks[2].emit = activate
+	marks[3].emit = activate
+
 func _process(delta):
-	#tire marks
-	if kart.sliding:
-		for mark in marks:
-			mark.emit = true
-	else:
-		for mark in marks:
-			if mark.emit: mark.emit = false
 	
 	var speed = (kart.speed)
 	tires[0].rotation_degrees.x -= speed
@@ -43,7 +45,7 @@ func _process(delta):
 	
 	#kart sliding animation
 	if kart.sliding:
-		$center.rotation_degrees.y = lerp($center.rotation_degrees.y,-80,.3)
+		$center.rotation_degrees.y = lerp($center.rotation_degrees.y,80 * kart.sliding_side,.3)
 		pass
 	
 	# Kart inclination animation when jumping

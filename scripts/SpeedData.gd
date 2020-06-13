@@ -64,4 +64,12 @@ static func get_skill(skill:int) -> Dictionary:
 				_mt3 = BEGGINER_MT_3,
 				_sf = BEGGINER_SF
 			}
+		SKILL.ADVANCED:
+			return {
+				_min = ADVANCED_SPEED,
+				_mt1 = ADVANCED_MT_1,
+				_mt2 = ADVANCED_MT_2,
+				_mt3 = ADVANCED_MT_3,   
+				_sf = ADVANCED_SF,
+			}
 	return {}

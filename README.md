@@ -25,14 +25,26 @@ https://imgur.com/7Oce0Ov.mp4
 * M - Reset Game
 * K - Start a video in the top-left corner (used to compare with original game) videos folder is not included, if you want to help I can include then in future updates.
 * J/K - equivalent to R1/L1
+* Q - Brake
+
 
 **How to Test**
-* Open Godot 3.2.2 beta 3
+* Open Godot 3.2.2 RC1
 * open the project
-* start scene **gameplay/lev_sewer.tscn**
-* Press F6
+* start scene **gameplay/lev_sewer.tscn** (optional)
+* Press F5
 
 ## CHANGELOG
+
+**0.4.0**
+* Moved to Godot 3.2.2 RC1
+* Added Brake System (see **controllers**)
+* Completed SpeedData.GD (Speed information )
+* Added functions for tire marks (see KartAnimation)
+* minor adjustments to tire marks
+* Started on Turbo Pads
+
+
 **0.3.0**
 * Added Jump
 * Added PowerSliding (not even close to original game)

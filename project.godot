@@ -9,10 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "KartAnimation",
+"language": "GDScript",
+"path": "res://scripts/gameplay/KartAnimation.gd"
+}, {
 "base": "KinematicBody",
 "class": "KartController",
 "language": "GDScript",
 "path": "res://scripts/gameplay/KartController.gd"
+}, {
+"base": "Spatial",
+"class": "KartParticles",
+"language": "GDScript",
+"path": "res://scripts/gameplay/KartParticles.gd"
+}, {
+"base": "AudioStreamPlayer3D",
+"class": "KartSound",
+"language": "GDScript",
+"path": "res://scripts/gameplay/KartSound.gd"
 }, {
 "base": "KartController",
 "class": "KartState",
@@ -33,13 +48,28 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://scripts/StateMachine.gd"
+}, {
+"base": "Area",
+"class": "TurboPad",
+"language": "GDScript",
+"path": "res://scripts/gameplay/TurboPad.gd"
+}, {
+"base": "Node",
+"class": "VectorDisplay3D",
+"language": "GDScript",
+"path": "res://addons/godot-next/VectorDisplay3D.gd"
 } ]
 _global_script_class_icons={
+"KartAnimation": "",
 "KartController": "",
+"KartParticles": "",
+"KartSound": "",
 "KartState": "",
 "SpeedData": "",
 "Speedometer": "",
-"StateMachine": ""
+"StateMachine": "",
+"TurboPad": "",
+"VectorDisplay3D": ""
 }
 
 [application]
@@ -51,6 +81,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ScreenDebugger="*res://addons/screen_debugger/S_ScreenDebugger.gd"
+Utils="*res://scripts/Utils.gd"
 
 [debug]
 
@@ -113,6 +144,11 @@ cmd_trigger_lb={
 cmd_reset={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+cmd_brake={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
  ]
 }
 

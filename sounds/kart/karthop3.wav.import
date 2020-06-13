@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/karthop3.wav-d8f827b9e37615cc72e5478a1470faa8.sample"
+
+[deps]
+
+source_file="res://sounds/kart/karthop3.wav"
+dest_files=[ "res://.import/karthop3.wav-d8f827b9e37615cc72e5478a1470faa8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

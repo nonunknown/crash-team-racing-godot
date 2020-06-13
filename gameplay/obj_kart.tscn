@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/gameplay/KartState.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://models/kart/kart.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/gameplay/KartAnimation.gd" type="Script" id=4]
+[ext_resource path="res://models/kart/Material.material" type="Material" id=5]
+[ext_resource path="res://scripts/gameplay/KartSound.gd" type="Script" id=6]
+[ext_resource path="res://sounds/kart/move.wav" type="AudioStream" id=7]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.588331, 0.474434, 1.32538 )
+extents = Vector3( 0.540493, 0.47817, 0.654507 )
 
 [node name="Kart" type="KinematicBody"]
-transform = Transform( -3.23167e-08, 0, 0.739319, 0, 1, 0, -0.96118, 0, -4.20145e-08, -4.61258, 1.47889, 0.793612 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.61258, 1.47889, 0.793612 )
 script = ExtResource( 1 )
 
 [node name="RayCast" type="RayCast" parent="."]
@@ -18,7 +21,7 @@ enabled = true
 cast_to = Vector3( 0, -0.571, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.618053, 0, 1.06581e-14, 0, 0.618053, 0, -2.30926e-14, 0, 0.618053, 0, 0.319317, -0.38738 )
+transform = Transform( 1, 0, 3.19744e-14, 0, 1, 0, -3.19744e-14, 0, 1, 0.0640396, 0.436934, -0.314087 )
 shape = SubResource( 1 )
 
 [node name="mesh" type="Spatial" parent="."]
@@ -41,7 +44,11 @@ transform = Transform( 1, 0, 3.55271e-14, 0, 0.438805, 0, 3.55271e-15, 0, 1, 0.1
 transform = Transform( 1, 0, 3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0.0600669, 0.315099, -0.32787 )
 
 [node name="kart" parent="mesh/center" instance=ExtResource( 3 )]
-transform = Transform( 0.00918352, 0, -8.55008e-11, 0, 0.0091835, 0, -8.55012e-11, 0, 0.0111396, 0.0179796, -0.364037, 0.117594 )
+transform = Transform( 0.01, 0, 6.5517e-11, 0, 0.01, 0, -6.55169e-11, 0, 0.01, 0.0179796, -0.364037, 0.117594 )
+
+[node name="kart" parent="mesh/center/kart/kart" index="6"]
+cast_shadow = 0
+material/0 = ExtResource( 5 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 3.203, 0 )
@@ -51,5 +58,13 @@ modulate = Color( 0.301961, 1, 0, 1 )
 pixel_size = 0.02
 transparent = false
 texture = ExtResource( 2 )
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0872631, 0.409132, 0.101726 )
+stream = ExtResource( 7 )
+unit_db = 80.0
+pitch_scale = 1.14
+autoplay = true
+script = ExtResource( 6 )
 
 [editable path="mesh/center/kart"]
