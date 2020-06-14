@@ -3,7 +3,7 @@
 # Crash Team Racing - Godot
 
 ## Description
-Godot version: 3.2.2 beta 3
+Godot version: 3.2.2 RC1
 
 This project has the objective to mimic crash team racing 1999 physics and kart handling.
 I'll do my best to get as close as possible.
